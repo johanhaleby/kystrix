@@ -5,7 +5,7 @@ Kystrix is a small DSL that makes working with [Hystrix](https://github.com/Netf
 For example:
 
 ```kotlin
-val greeting = hystrixObservableCommand<Greeting> {
+val greetingObservable = hystrixObservableCommand<Greeting> {
         groupKey("Test")
         commandKey("Test-Command")
         command {
@@ -17,7 +17,7 @@ val greeting = hystrixObservableCommand<Greeting> {
             withExecutionIsolationSemaphoreMaxConcurrentRequests(3)
             withFallbackEnabled(false)
         }
-    }.toBlocking().first()
+    }
 ```
 
 This is a work in progress!
