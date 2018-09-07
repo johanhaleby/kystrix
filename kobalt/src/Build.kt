@@ -1,5 +1,11 @@
 import com.beust.kobalt.plugin.packaging.assemble
+import com.beust.kobalt.plugin.publish.autoGitTag
+import com.beust.kobalt.plugin.publish.bintray
 import com.beust.kobalt.project
+import org.apache.maven.model.Developer
+import org.apache.maven.model.License
+import org.apache.maven.model.Model
+import org.apache.maven.model.Scm
 
 val p = project {
     name = "kystrix-core"
@@ -24,8 +30,41 @@ val p = project {
         compile("org.slf4j:slf4j-simple:1.7.25")
     }
 
+    // Create maven pom so that we can sync with Maven central
     assemble {
-        jar {
+        mavenJars {
         }
+    }
+
+    // Enable Bintray integration
+    bintray {
+        publish = true
+        sign = true
+    }
+
+    // Automatically create a git tag when publishing a release
+    autoGitTag {
+        enabled = true
+        annotated = true
+        tag = "$version"
+        message = "Released $version"
+    }
+
+    pom = Model().apply {
+        name = project.name
+        description = "Kystrix is a small Kotlin DSL over Hystrix "
+        url = "https://kystrix.haleby.se/"
+        licenses = listOf(License().apply {
+            name = "Apache 2.0"
+            url = "http://www.apache.org/licenses/LICENSE-2.0"
+        })
+        scm = Scm().apply {
+            url = "https://github.com/johanhaleby/kystrix"
+            connection = "https://github.com/johanhaleby/kystrix.git"
+            developerConnection = "git@github.com:johanhaleby/kystrix.git"
+        }
+        developers = listOf(Developer().apply {
+            name = "Johan Haleby"
+        })
     }
 }
