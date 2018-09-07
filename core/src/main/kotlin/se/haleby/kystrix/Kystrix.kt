@@ -3,6 +3,10 @@ package se.haleby.kystrix
 import com.netflix.hystrix.*
 import rx.Observable
 
+inline fun <reified T : Any> hystrixObservableCommand(block: KystrixObservableCommand<T>.() -> Unit): Observable<T> = KystrixObservableCommand<T>().apply(block).build()
+
+inline fun <reified T : Any> hystrixCommand(block: KystrixCommand<T>.() -> Unit): HystrixCommand<T> = KystrixCommand<T>().apply(block).build()
+
 open class KystrixBase {
     internal lateinit var commandKey: HystrixCommandKey
     internal lateinit var groupKey: HystrixCommandGroupKey
@@ -93,6 +97,3 @@ class KystrixCommand<T> : KystrixBase() {
         }
     }
 }
-
-inline fun <reified T : Any> hystrixObservableCommand(block: KystrixObservableCommand<T>.() -> Unit): Observable<T> = KystrixObservableCommand<T>().apply(block).build()
-inline fun <reified T : Any> hystrixCommand(block: KystrixCommand<T>.() -> Unit): HystrixCommand<T> = KystrixCommand<T>().apply(block).build()
