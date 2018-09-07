@@ -12,6 +12,7 @@ val p = project {
     group = "se.haleby.kystrix"
     artifactId = name
     version = "0.1.0"
+    directory = "core"
     val kotlinVersion = "1.2.61"
 
     dependencies {
