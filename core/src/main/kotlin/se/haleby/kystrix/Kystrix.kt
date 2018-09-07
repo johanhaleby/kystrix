@@ -35,14 +35,14 @@ open class KystrixBase {
 
 class KystrixObservableCommand<T> : KystrixBase() {
 
-    private lateinit var command: () -> Observable<T>
-    private var fallback: (() -> Observable<T>)? = null
+    private lateinit var command: () -> Observable<T?>
+    private var fallback: (() -> Observable<T?>)? = null
 
-    fun command(block: () -> Observable<T>) {
+    fun command(block: () -> Observable<T?>) {
         command = block
     }
 
-    fun fallback(block: () -> Observable<T>) {
+    fun fallback(block: () -> Observable<T?>) {
         fallback = block
     }
 
@@ -51,24 +51,24 @@ class KystrixObservableCommand<T> : KystrixBase() {
                 .andCommandKey(commandKey)
                 .andCommandPropertiesDefaults(commandProperties)
         return object : HystrixObservableCommand<T>(settings) {
-            override fun construct(): Observable<T> = command()
-            override fun resumeWithFallback(): Observable<T> = if (fallback == null) super.resumeWithFallback() else fallback!!()
+            override fun construct(): Observable<T?> = command()
+            override fun resumeWithFallback(): Observable<T?> = if (fallback == null) super.resumeWithFallback() else fallback!!()
         }.toObservable()
     }
 }
 
 class KystrixCommand<T> : KystrixBase() {
 
-    private lateinit var command: () -> T
+    private lateinit var command: () -> T?
     private var threadPoolKey: HystrixThreadPoolKey? = null
-    private var definedFallback: (() -> T)? = null
+    private var definedFallback: (() -> T?)? = null
     private var threadPoolProperties: HystrixThreadPoolProperties.Setter = HystrixThreadPoolProperties.Setter()
 
-    fun command(block: () -> T) {
+    fun command(block: () -> T?) {
         command = block
     }
 
-    fun fallback(block: () -> T) {
+    fun fallback(block: () -> T?) {
         definedFallback = block
     }
 
@@ -93,7 +93,7 @@ class KystrixCommand<T> : KystrixBase() {
 
         return object : HystrixCommand<T>(settings) {
             override fun run() = command()
-            override fun getFallback(): T = if (definedFallback == null) super.getFallback() else definedFallback!!()
+            override fun getFallback(): T? = if (definedFallback == null) super.getFallback() else definedFallback!!()
         }
     }
 }

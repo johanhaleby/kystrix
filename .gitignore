@@ -8,3 +8,5 @@
 .idea
 .kobalt
 kobaltBuild
+kobalt/out/
+kobalt/Build.kt.iml
