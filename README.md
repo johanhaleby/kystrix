@@ -6,19 +6,23 @@ Kystrix is a small DSL that makes working with [Hystrix](https://github.com/Netf
 For example:
 
 ```kotlin
-val greetingObservable = hystrixObservableCommand<Greeting> {
-        groupKey("Test")
-        commandKey("Test-Command")
-        command {
-            val response = Dsl.asyncHttpClient().executeRequest(Dsl.get("http://localhost:8080/greeting?firstName=John&lastName=Doe").build())
-            Observable.from(response).map(Response::getResponseBody).map { body -> ObjectMapper().registerKotlinModule().readValue<Greeting>(body) }
-        }
-        commandProperties {
-            withExecutionTimeoutInMilliseconds(2000)
-            withExecutionIsolationSemaphoreMaxConcurrentRequests(3)
-            withFallbackEnabled(false)
-        }
+val greeting = hystrixCommand<Greeting> {
+    groupKey("GreetingService")
+    commandKey("Greet")
+    command {
+        // This is what you want Hystrix to wrap
+        get("/greeting?firstName=John&lastName=Doe").asJson()
     }
+    commandProperties {
+        withExecutionTimeoutInMilliseconds(10000)
+        withExecutionIsolationStrategy(THREAD)
+        withFallbackEnabled(false)
+    }
+    threadPoolProperties {
+        withQueueSizeRejectionThreshold(5)
+        withMaxQueueSize(10)
+    }
+}.execute()
 ```
 
 This is a work in progress!
