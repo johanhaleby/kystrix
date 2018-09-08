@@ -25,4 +25,4 @@ val greeting = hystrixCommand<Greeting> {
 }.execute()
 ```
 
-This is a work in progress!
+This is a work in progress, expect more soon.
