@@ -1,9 +1,7 @@
 package se.haleby.kystrix
 
-import net.javacrumbs.futureconverter.java8rx.FutureConverter.toCompletableFuture
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.core.publisher.Mono.fromFuture
 import rx.Observable
 import rx.RxReactiveStreams
 
@@ -25,6 +23,6 @@ fun <T> KystrixObservableCommand<T>.fluxCommand(block: () -> Flux<T>) {
     }
 }
 
-fun <T> Observable<T>.toMono(): Mono<T> = fromFuture(toCompletableFuture(toSingle()))
+fun <T> Observable<T>.toMono(): Mono<T> = Mono.from(RxReactiveStreams.toPublisher(this))
 
-// TODO Add a toFlux() extension method on observable
+fun <T> Observable<T>.toFlux(): Flux<T> = Flux.from(RxReactiveStreams.toPublisher(this))

@@ -89,7 +89,6 @@ val spring = project(core) {
 
     dependencies {
         compile("io.projectreactor:reactor-core:3.1.9.RELEASE")
-        compile("net.javacrumbs.future-converter:future-converter-rxjava-java8:1.1.0")
         compile("io.reactivex:rxjava-reactive-streams:1.2.1")
         compile("org.jetbrains.kotlin:kotlin-runtime:$KOTLIN_VERSION")
         compile("org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION")
