@@ -1,4 +1,4 @@
-import com.beust.kobalt.plugin.java.javaCompiler
+import com.beust.kobalt.api.Project
 import com.beust.kobalt.plugin.kotlin.kotlinCompiler
 import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.autoGitTag
@@ -57,23 +57,7 @@ val core = project {
         message = "Released $version"
     }
 
-    pom = Model().apply {
-        name = project.name
-        description = "Kystrix is a small Kotlin DSL over Hystrix "
-        url = "https://kystrix.haleby.se/"
-        licenses = listOf(License().apply {
-            name = "Apache 2.0"
-            url = "http://www.apache.org/licenses/LICENSE-2.0"
-        })
-        scm = Scm().apply {
-            url = "https://github.com/johanhaleby/kystrix"
-            connection = "https://github.com/johanhaleby/kystrix.git"
-            developerConnection = "git@github.com:johanhaleby/kystrix.git"
-        }
-        developers = listOf(Developer().apply {
-            name = "Johan Haleby"
-        })
-    }
+    pom = kystrixPom("Kystrix is a small Kotlin DSL over Hystrix")
 }
 
 val spring = project(core) {
@@ -104,5 +88,43 @@ val spring = project(core) {
         compile("org.springframework:spring-webflux:5.0.8.RELEASE")
     }
 
-    // TODO Add assembly and maven stuff
+    // Create maven pom so that we can sync with Maven central
+    assemble {
+        mavenJars {
+        }
+    }
+
+    // Enable Bintray integration
+    bintray {
+        publish = true
+        sign = true
+    }
+
+    // Automatically create a git tag when publishing a release
+    autoGitTag {
+        enabled = true
+        annotated = true
+        tag = "$version"
+        message = "Released $version"
+    }
+
+    pom = kystrixPom("Kystrix Spring adds Spring support for Kystrix")
+}
+
+private fun Project.kystrixPom(desc: String) = Model().apply {
+    name = project.name
+    description = desc
+    url = "https://kystrix.haleby.se/"
+    licenses = listOf(License().apply {
+        name = "Apache 2.0"
+        url = "http://www.apache.org/licenses/LICENSE-2.0"
+    })
+    scm = Scm().apply {
+        url = "https://github.com/johanhaleby/kystrix"
+        connection = "https://github.com/johanhaleby/kystrix.git"
+        developerConnection = "git@github.com:johanhaleby/kystrix.git"
+    }
+    developers = listOf(Developer().apply {
+        name = "Johan Haleby"
+    })
 }
