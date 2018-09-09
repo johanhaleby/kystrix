@@ -8,7 +8,7 @@ For example:
 ```kotlin
 val greeting = hystrixCommand<Greeting> {
     groupKey("GreetingService")
-    commandKey("Greet")
+    commandKey("Greeting")
     command {
         // This is what you want Hystrix to wrap
         get("/greeting?firstName=John&lastName=Doe").asJson()
