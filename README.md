@@ -25,9 +25,14 @@ val greeting = hystrixCommand<Greeting> {
 }.execute()
 ```
 
+## Contents
+1. [Getting Started](#getting-started)
+1. [Examples](#examples)
+1. [Spring Support](#spring-support)
+
 ## Getting Started
 
-The project contains two modules, `kystrix-core` and `kystrix-spring`. You only need `kystrix-spring` if you're using components in Spring's reactive stack such as [spring-webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). See [Kystrix Spring](#kotlin-spring) for more info.
+The project contains two modules, `kystrix-core` and `kystrix-spring`. You only need `kystrix-spring` if you're using components in Spring's reactive stack such as [spring-webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). See [Kystrix Spring](#spring-support) for more info.
 
 The project will hopefully be available at Maven central soon.
 
@@ -72,7 +77,7 @@ See this blog post for more information.
 
 For examples have a look in the [test package](https://github.com/johanhaleby/kystrix/tree/master/core/src/test/kotlin/se/haleby/kystrix) (see here for [spring](https://github.com/johanhaleby/kystrix/tree/master/spring/src/test/kotlin/se/haleby/kystrix) examples).
 
-## Kotlin Spring
+## Spring Support
 
 Kystrix provides a module named `kystrix-spring` makes it easier to integrate and work with [Mono](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html) and [Flux](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html) and Hystrix.
 
