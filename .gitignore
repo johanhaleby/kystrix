@@ -10,3 +10,4 @@
 kobaltBuild
 kobalt/out/
 kobalt/Build.kt.iml
+local.properties
