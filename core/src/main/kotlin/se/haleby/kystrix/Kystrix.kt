@@ -19,12 +19,8 @@ import rx.Observable
  *    }
  *    commandProperties {
  *        withExecutionTimeoutInMilliseconds(10000)
- *        withExecutionIsolationStrategy(THREAD)
+ *        withExecutionIsolationSemaphoreMaxConcurrentRequests(5)
  *        withFallbackEnabled(false)
- *    }
- *    threadPoolProperties {
- *        withQueueSizeRejectionThreshold(5)
- *        withMaxQueueSize(10)
  *    }
  *}
  * ```
