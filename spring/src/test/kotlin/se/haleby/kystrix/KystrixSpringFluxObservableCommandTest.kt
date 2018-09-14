@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.client.bodyToFlux
 import org.springframework.web.reactive.function.client.bodyToMono
 import se.haleby.kystrix.support.GreetService
 import se.haleby.kystrix.support.Greeting
+import se.haleby.kystrix.support.HystrixSupport
 
 
 class KystrixSpringFluxObservableCommandTest {
@@ -18,6 +19,10 @@ class KystrixSpringFluxObservableCommandTest {
     @Rule
     @JvmField
     var greetService = GreetService()
+
+    @Rule
+    @JvmField
+    var hystrixSupport = HystrixSupport()
 
     @Test
     fun `Spring DSL works with Hystrix Flux Commands`() {

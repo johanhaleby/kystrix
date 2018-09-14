@@ -11,12 +11,17 @@ import org.junit.Test
 import rx.Observable
 import se.haleby.kystrix.support.GreetService
 import se.haleby.kystrix.support.Greeting
+import se.haleby.kystrix.support.HystrixSupport
 
 class KystrixObservableCommandTest {
 
     @Rule
     @JvmField
     var greetService = GreetService()
+
+    @Rule
+    @JvmField
+    var hystrixSupport = HystrixSupport()
 
     @Test
     fun `DSL works with Hystrix Observable Commands`() {

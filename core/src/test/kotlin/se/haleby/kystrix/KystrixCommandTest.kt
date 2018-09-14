@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import se.haleby.kystrix.support.GreetService
 import se.haleby.kystrix.support.Greeting
+import se.haleby.kystrix.support.HystrixSupport
 import se.haleby.kystrix.support.asJson
 
 class KystrixCommandTest {
@@ -14,6 +15,10 @@ class KystrixCommandTest {
     @Rule
     @JvmField
     var greetService = GreetService()
+
+    @Rule
+    @JvmField
+    var hystrixSupport = HystrixSupport()
 
     @Test
     fun `DSL works with Hystrix Commands`() {

@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
 import se.haleby.kystrix.support.GreetService
 import se.haleby.kystrix.support.Greeting
+import se.haleby.kystrix.support.HystrixSupport
 
 
 class KystrixSpringMonoCommandTest {
@@ -17,6 +18,10 @@ class KystrixSpringMonoCommandTest {
     @Rule
     @JvmField
     var greetService = GreetService()
+
+    @Rule
+    @JvmField
+    var hystrixSupport = HystrixSupport()
 
     @Test
     fun `Spring DSL works with Hystrix Mono Commands`() {
