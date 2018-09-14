@@ -27,8 +27,8 @@ val greeting = hystrixCommand<Greeting> {
 
 ## Contents
 1. [Getting Started](#getting-started)
-1. [Examples](#examples)
 1. [Spring Support](#spring-support)
+1. [More Examples](#more-examples)
 
 ## Getting Started
 
@@ -72,10 +72,6 @@ import se.haleby.kystrix.hystrixObservableCommand
 Use the `hystrixCommand` for blocking IO and `hystrixObservableCommand` for non-blocking IO using RxJava Observables.
 
 See this blog post for more information.
-
-## Examples
-
-For examples have a look in the [test package](https://github.com/johanhaleby/kystrix/tree/master/core/src/test/kotlin/se/haleby/kystrix) (see here for [spring](https://github.com/johanhaleby/kystrix/tree/master/spring/src/test/kotlin/se/haleby/kystrix) examples).
 
 ## Spring Support
 
@@ -155,3 +151,7 @@ val greeting = hystrixObservableCommand<Greeting> {
 ```
 
 Here Kystrix returns a non-blocking stream of `Greeting` wrapped in a `Flux`.
+
+## More Examples
+
+For examples have a look in the [test package](https://github.com/johanhaleby/kystrix/tree/master/core/src/test/kotlin/se/haleby/kystrix) (see here for [spring](https://github.com/johanhaleby/kystrix/tree/master/spring/src/test/kotlin/se/haleby/kystrix) examples).
