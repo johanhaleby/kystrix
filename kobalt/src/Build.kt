@@ -116,7 +116,7 @@ private fun Project.kystrixPom(desc: String) = Model().apply {
     description = desc
     url = "https://kystrix.haleby.se/"
     licenses = listOf(License().apply {
-        name = "Apache 2.0"
+        name = "Apache-2.0"
         url = "http://www.apache.org/licenses/LICENSE-2.0"
     })
     scm = Scm().apply {
