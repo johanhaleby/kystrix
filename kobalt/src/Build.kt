@@ -10,7 +10,7 @@ import org.apache.maven.model.Model
 import org.apache.maven.model.Scm
 
 const val KYSTRIX_GROUP_NAME = "se.haleby.kystrix"
-const val KYSTRIX_VERSION = "0.1.1"
+const val KYSTRIX_VERSION = "0.1.0"
 const val KOTLIN_VERSION = "1.2.61"
 const val HYSTRIX_VERSION = "1.5.12"
 
