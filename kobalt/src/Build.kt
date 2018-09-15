@@ -71,7 +71,7 @@ val core = project {
 
     // Automatically create a git tag when publishing a release
     autoGitTag {
-        enabled = true
+        enabled = false
         annotated = true
         tag = "$version"
         message = "Released $version"
@@ -122,7 +122,7 @@ val spring = project(core) {
 
     // Automatically create a git tag when publishing a release
     autoGitTag {
-        enabled = true
+        enabled = false
         annotated = true
         tag = "$version"
         message = "Released $version"
