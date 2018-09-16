@@ -73,7 +73,7 @@ import se.haleby.kystrix.hystrixObservableCommand
 
 Use the `hystrixCommand` for blocking IO and `hystrixObservableCommand` for non-blocking IO using RxJava Observables.
 
-See this blog post for more information.
+See [this blog post](http://code.haleby.se/2018/09/16/kystrix-a-kotlin-dsl-for-hystrix/) for more information.
 
 ## Spring Support
 
