@@ -42,21 +42,21 @@ The project will hopefully be available at Maven central soon.
 <dependency>
     <groupId>se.haleby.kystrix</groupId>
     <artifactId>kystrix-core</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-compile 'se.haleby.kystrix:kystrix-core:0.1.0'
+compile 'se.haleby.kystrix:kystrix-core:0.1.1'
 ```
 
 #### Kobalt
 
 ```kotlin
 dependencies {
-    compile("se.haleby.kystrix:kystrix-core:0.1.0")
+    compile("se.haleby.kystrix:kystrix-core:0.1.1")
 }
 ```
 
@@ -85,21 +85,21 @@ The project will hopefully be available at Maven central soon.
 <dependency>
     <groupId>se.haleby.kystrix</groupId>
     <artifactId>kystrix-spring</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-compile 'se.haleby.kystrix:kystrix-spring:0.1.0'
+compile 'se.haleby.kystrix:kystrix-spring:0.1.1'
 ```
 
 #### Kobalt
 
 ```kotlin
 dependencies {
-    compile("se.haleby.kystrix:kystrix-spring:0.1.0")
+    compile("se.haleby.kystrix:kystrix-spring:0.1.1")
 }
 ```
 
