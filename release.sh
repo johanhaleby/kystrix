@@ -24,4 +24,4 @@ echo "Bintray upload completed, will update Build version.." && \
 sed -i "" "s/val kystrix = \"${releaseVersion}\"/val kystrix = \"${nextVersion}-SNAPSHOT\"/g" kobalt/src/Build.kt && \
 git ci -am "Setting build version to ${nextVersion}-SNAPSHOT" && \
 git push && \
-echo "Release of Kystrix $releaseVersion completed successfully"
+echo "Release of Kystrix $releaseVersion completed successfully! Login to Bintray and sync both projects to Maven central!"
