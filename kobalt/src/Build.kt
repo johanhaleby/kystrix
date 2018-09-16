@@ -14,7 +14,7 @@ object Versions {
     const val java = "1.8"
 
     // Compile versions
-    const val kystrix = "0.1.0"
+    const val kystrix = "0.1.1"
     const val kotlin = "1.2.61"
     const val hystrix = "1.5.12"
     const val reactorCore = "3.1.9.RELEASE"
