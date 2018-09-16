@@ -52,10 +52,10 @@ inline fun <reified T : Any> hystrixObservableCommand(block: KystrixObservableCo
  *        withQueueSizeRejectionThreshold(5)
  *        withMaxQueueSize(10)
  *    }
- *}.execute()
+ *}
  * ```
  */
-inline fun <reified T : Any> hystrixCommand(block: KystrixCommand<T>.() -> Unit): HystrixCommand<T> = KystrixCommand<T>().apply(block).build()
+inline fun <reified T : Any> hystrixCommand(block: KystrixCommand<T>.() -> Unit): T = KystrixCommand<T>().apply(block).build().execute()
 
 /**
  * A base-class for shared Kystrix DSL functionality. This should never be used directly.

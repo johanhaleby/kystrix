@@ -47,7 +47,7 @@ class KystrixSpringMonoCommandTest {
                 withQueueSizeRejectionThreshold(5)
                 withMaxQueueSize(10)
             }
-        }.execute()
+        }
 
         // Then
         assertThat(greeting.message).isEqualTo("Have a nice day $firstName $lastName")
