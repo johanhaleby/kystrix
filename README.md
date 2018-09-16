@@ -24,7 +24,7 @@ val greeting = hystrixCommand<Greeting> {
         withQueueSizeRejectionThreshold(5)
         withMaxQueueSize(10)
     }
-}.execute()
+}
 ```
 
 ## Contents
