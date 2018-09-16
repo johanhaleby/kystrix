@@ -1,5 +1,7 @@
 # ![Logo](https://raw.githubusercontent.com/johanhaleby/kystrix/master/kystrix-logo.png "Kystrix")
 [![Build Status](https://travis-ci.org/johanhaleby/kystrix.svg)](https://travis-ci.org/johanhaleby/kystrix)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.haleby.kystrix/kystrix-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.haleby.kystrix/kystrix-core)
+
 
 Kystrix is a small DSL that makes working with [Hystrix](https://github.com/Netflix/Hystrix) easier from Kotlin.
 
