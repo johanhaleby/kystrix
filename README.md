@@ -34,7 +34,7 @@ val greeting = hystrixCommand<Greeting> {
 
 ## Getting Started
 
-The project contains two modules, `kystrix-core` and `kystrix-spring`. You only need `kystrix-spring` if you're using components in Spring's reactive stack such as [spring-webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). See [Kystrix Spring](#spring-support) for more info.
+The project contains two modules, `kystrix-core` and `kystrix-spring`. You only need `kystrix-spring` if you're using components from Spring's reactive stack such as [spring-webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). See [Kystrix Spring](#spring-support) for more info.
 
 The project is available in Maven central as well as JCentral.
 
@@ -98,7 +98,7 @@ compile 'se.haleby.kystrix:kystrix-spring:0.1.2'
 ```
 
 #### Kobalt
-
+s
 ```kotlin
 dependencies {
     compile("se.haleby.kystrix:kystrix-spring:0.1.2")
@@ -107,7 +107,7 @@ dependencies {
 
 #### Static Imports
 
-Once the `kystrix-spring` DSL is included in you can start using the extension functions in the `se.haleby.kystrix`:
+Once the `kystrix-spring` DSL is included in the classpath you can start using the extension functions in the `se.haleby.kystrix`:
 
 ```
 import se.haleby.kystrix.monoCommand
@@ -127,7 +127,6 @@ val greeting = hystrixObservableCommand<Greeting> {
     }
     commandProperties {
         withExecutionTimeoutInMilliseconds(10000)
-        withExecutionIsolationStrategy(THREAD)
         withFallbackEnabled(false)
     }
 }.toMono()
@@ -146,7 +145,6 @@ val greeting = hystrixObservableCommand<Greeting> {
     }
     commandProperties {
         withExecutionTimeoutInMilliseconds(10000)
-        withExecutionIsolationStrategy(THREAD)
         withFallbackEnabled(false)
     }
 }.toFlux()
