@@ -98,7 +98,7 @@ compile 'se.haleby.kystrix:kystrix-spring:0.1.2'
 ```
 
 #### Kobalt
-s
+
 ```kotlin
 dependencies {
     compile("se.haleby.kystrix:kystrix-spring:0.1.2")
