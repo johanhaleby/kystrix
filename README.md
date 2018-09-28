@@ -107,7 +107,7 @@ dependencies {
 
 #### Imports
 
-Once the `kystrix-spring` DSL is included in the classpath you can start using the extension functions in the `se.haleby.kystrix`:
+Once the `kystrix-spring` DSL is included in the classpath you can start using the extension functions in the `se.haleby.kystrix` package:
 
 ```
 import se.haleby.kystrix.monoCommand
