@@ -105,7 +105,7 @@ dependencies {
 }
 ```
 
-#### Static Imports
+#### Imports
 
 Once the `kystrix-spring` DSL is included in the classpath you can start using the extension functions in the `se.haleby.kystrix`:
 
