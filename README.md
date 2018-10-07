@@ -36,7 +36,7 @@ val greeting = hystrixCommand<Greeting> {
 
 The project contains two modules, `kystrix-core` and `kystrix-spring`. You only need `kystrix-spring` if you're using components from Spring's reactive stack such as [spring-webflux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). See [Kystrix Spring](#spring-support) for more info.
 
-The project is available in Maven central as well as JCentral.
+The project is available in Maven central as well as JCenter.
 
 #### Maven
 
