@@ -5,7 +5,7 @@ read -p "Enter the version to release: " releaseVersion
 read -p "Enter the next build version (without snapshot): " nextVersion
 echo "Starting to release Kystrix $releaseVersion" && \
 echo "Setting JDK to 1.8" && \
-setjdk 1.8 && \
+sdk use java 8.0.191-oracle && \
 echo "Pulling latest..." && \
 git pull --rebase && \
 ./kobaltw clean test && \
