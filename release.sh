@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 read -p "Enter the previous version: " oldVersion
 read -p "Enter the current build version (without snapshot): " currentVersion
 read -p "Enter the version to release: " releaseVersion
