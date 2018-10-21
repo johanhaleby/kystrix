@@ -3,7 +3,10 @@ read -p "Enter the previous version: " oldVersion
 read -p "Enter the current build version (without snapshot): " currentVersion
 read -p "Enter the version to release: " releaseVersion
 read -p "Enter the next build version (without snapshot): " nextVersion
-echo "Starting to relase Kystrix $releaseVersion"
+echo "Starting to release Kystrix $releaseVersion" && \
+echo "Setting JDK to 1.8" && \
+setjdk 1.8 && \
+echo "Pulling latest..." && \
 git pull --rebase && \
 ./kobaltw clean test && \
 echo "Changing Build version to $releaseVersion" && \
