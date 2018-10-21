@@ -55,11 +55,24 @@ inline fun <reified T : Any> hystrixObservableCommand(block: KystrixObservableCo
  *}
  * ```
  */
-inline fun <reified T : Any> hystrixCommand(block: KystrixCommand<T>.() -> Unit): T = KystrixCommand<T>().apply(block).build().execute()
+fun <T> hystrixCommand(block: KystrixCommand<T>.() -> Unit): T {
+    val kystrixCommand = KystrixCommand<T>()
+    block(kystrixCommand)
+    val hystrixCommand: HystrixCommand<T> = kystrixCommand.build()
+    return hystrixCommand.execute()
+}
+
+/**
+ * Kystrix DSL marker annotation which is used to limit callers so that they will not have implicit access to multiple receivers whose classes are in the set of annotated classes.
+ */
+@DslMarker
+@Target(AnnotationTarget.TYPE, AnnotationTarget.CLASS)
+annotation class KystrixDSL
 
 /**
  * A base-class for shared Kystrix DSL functionality. This should never be used directly.
  */
+@KystrixDSL
 abstract class KystrixBase {
     internal lateinit var commandKey: HystrixCommandKey
     internal lateinit var groupKey: HystrixCommandGroupKey
@@ -96,7 +109,7 @@ abstract class KystrixBase {
     /**
      * Configure the Hystrix command properties, see [HystrixCommandProperties].
      */
-    fun commandProperties(block: HystrixCommandProperties.Setter.() -> Unit) {
+    fun commandProperties(block: (@KystrixDSL HystrixCommandProperties.Setter).() -> Unit) {
         commandProperties = HystrixCommandProperties.Setter().apply(block)
     }
 }
@@ -104,10 +117,11 @@ abstract class KystrixBase {
 /**
  * Class used in the Kystrix DSL to define aspects of [HystrixObservableCommand]'s. Should not be used directly, rather refer to [hystrixObservableCommand].
  */
+@KystrixDSL
 class KystrixObservableCommand<T> : KystrixBase() {
 
-    private lateinit var command: () -> Observable<T?>
-    private var fallback: (() -> Observable<T?>)? = null
+    private lateinit var command: (@KystrixDSL Unit).() -> Observable<T?>
+    private var fallback: ((@KystrixDSL Unit).() -> Observable<T?>)? = null
 
     /**
      * Define the actual logic that will be called by Hystrix and thus wrapped in a circuit-breaker. This is typically an HTTP or database request.
@@ -115,7 +129,7 @@ class KystrixObservableCommand<T> : KystrixBase() {
      * @param block The code block that will be executed by Hystrix.
      * @see HystrixObservableCommand.construct
      */
-    fun command(block: () -> Observable<T?>) {
+    fun command(block: (@KystrixDSL Unit).() -> Observable<T?>) {
         command = block
     }
 
@@ -125,7 +139,7 @@ class KystrixObservableCommand<T> : KystrixBase() {
      * @param block The code block that will be executed by Hystrix when the circuit-breaker is open.
      * @see HystrixObservableCommand.resumeWithFallback
      */
-    fun fallback(block: () -> Observable<T?>) {
+    fun fallback(block: (@KystrixDSL Unit).() -> Observable<T?>) {
         fallback = block
     }
 
@@ -137,8 +151,8 @@ class KystrixObservableCommand<T> : KystrixBase() {
                 .andCommandKey(commandKey)
                 .andCommandPropertiesDefaults(commandProperties)
         return object : HystrixObservableCommand<T>(settings) {
-            override fun construct(): Observable<T?> = command()
-            override fun resumeWithFallback(): Observable<T?> = if (fallback == null) super.resumeWithFallback() else fallback!!()
+            override fun construct(): Observable<T?> = command(Unit)
+            override fun resumeWithFallback(): Observable<T?> = if (fallback == null) super.resumeWithFallback() else fallback!!(Unit)
         }.toObservable()
     }
 }
@@ -146,11 +160,12 @@ class KystrixObservableCommand<T> : KystrixBase() {
 /**
  * Class used in the Kystrix DSL to define aspects of [HystrixCommand]'s. Should not be used directly, rather refer to [hystrixCommand].
  */
+@KystrixDSL
 class KystrixCommand<T> : KystrixBase() {
 
-    private lateinit var command: () -> T?
+    private lateinit var command: (@KystrixDSL Unit).() -> T?
     private var threadPoolKey: HystrixThreadPoolKey? = null
-    private var definedFallback: (() -> T?)? = null
+    private var definedFallback: ((@KystrixDSL Unit).() -> T?)? = null
     private var threadPoolProperties: HystrixThreadPoolProperties.Setter = HystrixThreadPoolProperties.Setter()
 
     /**
@@ -159,7 +174,7 @@ class KystrixCommand<T> : KystrixBase() {
      * @param block The code block that will be executed by Hystrix.
      * @see HystrixCommand.run
      */
-    fun command(block: () -> T?) {
+    fun command(block: (@KystrixDSL Unit).() -> T?) {
         command = block
     }
 
@@ -169,7 +184,7 @@ class KystrixCommand<T> : KystrixBase() {
      * @param block The code block that will be executed by Hystrix when the circuit-breaker is open.
      * @see HystrixCommand.getFallback
      */
-    fun fallback(block: () -> T?) {
+    fun fallback(block: (@KystrixDSL Unit).() -> T?) {
         definedFallback = block
     }
 
@@ -190,7 +205,7 @@ class KystrixCommand<T> : KystrixBase() {
     /**
      * Configure the Hystrix thread-pool properties, see [HystrixThreadPoolProperties].
      */
-    fun threadPoolProperties(block: HystrixThreadPoolProperties.Setter.() -> Unit) {
+    fun threadPoolProperties(block: (@KystrixDSL HystrixThreadPoolProperties.Setter).() -> Unit) {
         threadPoolProperties = HystrixThreadPoolProperties.Setter().apply(block)
     }
 
@@ -205,8 +220,8 @@ class KystrixCommand<T> : KystrixBase() {
                 .andThreadPoolPropertiesDefaults(threadPoolProperties)
 
         return object : HystrixCommand<T>(settings) {
-            override fun run() = command()
-            override fun getFallback(): T? = if (definedFallback == null) super.getFallback() else definedFallback!!()
+            override fun run() = command.invoke(Unit)
+            override fun getFallback(): T? = if (definedFallback == null) super.getFallback() else definedFallback!!(Unit)
         }
     }
 }

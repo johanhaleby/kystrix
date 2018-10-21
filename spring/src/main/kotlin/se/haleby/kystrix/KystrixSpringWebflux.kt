@@ -31,7 +31,7 @@ import rx.RxReactiveStreams
  *
  * **NOTE:** This command will block the Mono! You might want to look at using a [KystrixObservableCommand] (i.e. creating a DSL from [hystrixObservableCommand] instead).
  */
-fun <T> KystrixCommand<T>.monoCommand(block: () -> Mono<T>) {
+fun <T> KystrixCommand<T>.monoCommand(block: (@KystrixDSL Unit).() -> Mono<T>) {
     command {
         block().block()
     }
@@ -61,7 +61,7 @@ fun <T> KystrixCommand<T>.monoCommand(block: () -> Mono<T>) {
  *}
  * ```
  */
-fun <T> KystrixObservableCommand<T>.monoCommand(block: () -> Mono<T>) {
+fun <T> KystrixObservableCommand<T>.monoCommand(block: (@KystrixDSL Unit).() -> Mono<T>) {
     command {
         Observable.from(block().toFuture())
     }
@@ -92,7 +92,7 @@ fun <T> KystrixObservableCommand<T>.monoCommand(block: () -> Mono<T>) {
  *}
  * ```
  */
-fun <T> KystrixObservableCommand<T>.fluxCommand(block: () -> Flux<T>) {
+fun <T> KystrixObservableCommand<T>.fluxCommand(block: (@KystrixDSL Unit).() -> Flux<T>) {
     command {
         RxReactiveStreams.toObservable(block())
     }
