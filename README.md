@@ -79,8 +79,6 @@ See [this blog post](http://code.haleby.se/2018/09/16/kystrix-a-kotlin-dsl-for-h
 
 Kystrix provides a module named `kystrix-spring` makes it easier to integrate and work with [Mono](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html) and [Flux](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html) and Hystrix.
 
-The project will hopefully be available at Maven central soon.
-
 #### Maven
 
 ```xml
