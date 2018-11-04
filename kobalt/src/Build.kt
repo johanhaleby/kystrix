@@ -96,7 +96,6 @@ val spring = project(core) {
     dependencies {
         compile("io.projectreactor:reactor-core:${Versions.reactorCore}")
         compile("io.reactivex:rxjava-reactive-streams:${Versions.reactiveStreams}")
-        compile("org.jetbrains.kotlin:kotlin-runtime:${Versions.kotlin}")
         compile("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
         compile("com.netflix.hystrix:hystrix-core:${Versions.hystrix}")
     }
