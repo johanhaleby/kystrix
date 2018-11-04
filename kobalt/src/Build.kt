@@ -44,7 +44,6 @@ val core = project {
     directory = "core"
 
     dependencies {
-        compile("org.jetbrains.kotlin:kotlin-runtime:${Versions.kotlin}")
         compile("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
         compile("com.netflix.hystrix:hystrix-core:${Versions.hystrix}")
     }
