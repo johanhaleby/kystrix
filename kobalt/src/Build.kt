@@ -17,7 +17,7 @@ object Versions {
     const val kystrix = "0.1.7-SNAPSHOT"
 
     // Compile versions
-    const val kotlin = "1.2.70"
+    const val kotlin = "1.3.31"
     const val hystrix = "1.5.12"
     const val reactorCore = "3.1.9.RELEASE"
     const val reactiveStreams = "1.2.1"
