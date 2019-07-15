@@ -4,6 +4,7 @@ import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.autoGitTag
 import com.beust.kobalt.plugin.publish.bintray
 import com.beust.kobalt.project
+import com.sun.javafx.scene.CameraHelper.project
 import org.apache.maven.model.Developer
 import org.apache.maven.model.License
 import org.apache.maven.model.Model
