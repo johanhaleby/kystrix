@@ -18,20 +18,20 @@ object Versions {
 
     // Compile versions
     const val kotlin = "1.3.41"
-    const val hystrix = "1.5.12"
-    const val reactorCore = "3.1.9.RELEASE"
+    const val hystrix = "1.5.18"
+    const val reactorCore = "3.2.1.RELEASE"
     const val reactiveStreams = "1.2.1"
 
     // Test versions
-    const val assertj = "3.11.1"
+    const val assertj = "3.12.2"
     const val slf4j = "1.7.25"
-    const val jackson = "2.9.6"
-    const val restAssured = "3.1.1"
-    const val asyncHttpClient = "2.5.3"
+    const val jackson = "2.9.9"
+    const val restAssured = "4.0.0"
+    const val asyncHttpClient = "2.10.1"
     const val javalin = "2.1.1"
     const val junit = "4.12"
-    const val reactorNetty = "0.7.8.RELEASE"
-    const val webflux = "5.0.8.RELEASE"
+    const val reactorNetty = "0.8.9.RELEASE"
+    const val webflux = "5.1.8.RELEASE"
 }
 
 const val KYSTRIX_GROUP_NAME = "se.haleby.kystrix"
@@ -104,7 +104,7 @@ val spring = project(core) {
         compile("org.assertj:assertj-core:${Versions.assertj}")
         compile("io.javalin:javalin:${Versions.javalin}")
         compile("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.jackson}")
-        compile("io.projectreactor.ipc:reactor-netty:${Versions.reactorNetty}")
+        compile("io.projectreactor.netty:reactor-netty:${Versions.reactorNetty}")
         compile("org.springframework:spring-webflux:${Versions.webflux}")
     }
 
