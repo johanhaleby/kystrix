@@ -44,21 +44,21 @@ The project is available in Maven central as well as JCenter.
 <dependency>
     <groupId>se.haleby.kystrix</groupId>
     <artifactId>kystrix-core</artifactId>
-    <version>0.1.7</version>
+    <version>0.1.8</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-compile 'se.haleby.kystrix:kystrix-core:0.1.7'
+compile 'se.haleby.kystrix:kystrix-core:0.1.8'
 ```
 
 #### Kobalt
 
 ```kotlin
 dependencies {
-    compile("se.haleby.kystrix:kystrix-core:0.1.7")
+    compile("se.haleby.kystrix:kystrix-core:0.1.8")
 }
 ```
 
@@ -85,21 +85,21 @@ Kystrix provides a module named `kystrix-spring` makes it easier to integrate an
 <dependency>
     <groupId>se.haleby.kystrix</groupId>
     <artifactId>kystrix-spring</artifactId>
-    <version>0.1.7</version>
+    <version>0.1.8</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-compile 'se.haleby.kystrix:kystrix-spring:0.1.7'
+compile 'se.haleby.kystrix:kystrix-spring:0.1.8'
 ```
 
 #### Kobalt
 
 ```kotlin
 dependencies {
-    compile("se.haleby.kystrix:kystrix-spring:0.1.7")
+    compile("se.haleby.kystrix:kystrix-spring:0.1.8")
 }
 ```
 
