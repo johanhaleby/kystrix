@@ -153,3 +153,7 @@ Here Kystrix returns a non-blocking stream of `Greeting` wrapped in a `Flux`.
 ## More Examples
 
 Have a look in the [test package](https://github.com/johanhaleby/kystrix/tree/master/core/src/test/kotlin/se/haleby/kystrix) (see here for [spring](https://github.com/johanhaleby/kystrix/tree/master/spring/src/test/kotlin/se/haleby/kystrix) examples).
+
+## Support my work
+
+<a href="https://www.buymeacoffee.com/johanhaleby" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/arial-blue.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 180px !important;" height="42px" width="180px"></a>
