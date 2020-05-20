@@ -19,7 +19,7 @@ object Versions {
     // Compile versions
     const val kotlin = "1.3.61"
     const val hystrix = "1.5.18"
-    const val reactorCore = "3.3.1.RELEASE"
+    const val reactorCore = "3.3.5.RELEASE"
     const val reactiveStreams = "1.2.1"
 
     // Test versions
